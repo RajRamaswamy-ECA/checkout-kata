@@ -1,0 +1,8 @@
+old-*.*
+*.orig
+**/bin/
+**/obj/
+**/sql/debug
+**/.vscode/
+**/.vs/
+*csproj.user
