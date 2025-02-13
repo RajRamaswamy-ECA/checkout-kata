@@ -29,10 +29,9 @@ namespace Checkout_Kata
         }
 
         
-
         public void Scan(string item)
         {            
-            var itemDetail = _itemsPrice.FirstOrDefault(d => d.ItemName == item);
+            var itemDetail = _itemsPrice.FirstOrDefault(d => d.ItemName == item.ToUpper());
             if (itemDetail != null)
             {
                 if (ScannedItems.ContainsKey(item))
@@ -50,7 +49,24 @@ namespace Checkout_Kata
 
         public decimal GetTotalPrice()
         {
-            throw new NotImplementedException();
+            decimal totalPrice = 0;
+            foreach (var item in ScannedItems)
+            {
+                if (item.Value.SpecialPrice != null && item.Value.SpecialPrice.Quantity < item.Value.Quantity)
+                {
+                    int setsOfSpecialQuantity = item.Value.Quantity / item.Value.SpecialPrice.Quantity;
+                    int remainder = item.Value.Quantity % item.Value.SpecialPrice.Quantity; ;
+                    decimal totalForSets = setsOfSpecialQuantity * item.Value.SpecialPrice.SpecialItemPrice;
+                    decimal totalForRemainder = remainder * item.Value.UnitPrice;
+                    var totalItemPrice = totalForSets + totalForRemainder;
+                    totalPrice += totalItemPrice;
+                }
+                else
+                {
+                    totalPrice += item.Value.UnitPrice * item.Value.Quantity;
+                }
+            }
+            return totalPrice;
         }
     }
 }

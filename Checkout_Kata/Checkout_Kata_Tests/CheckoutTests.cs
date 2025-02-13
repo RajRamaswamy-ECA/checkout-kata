@@ -19,6 +19,15 @@ namespace Checkout_Kata_Tests
         }
 
         [Test]
+        public void Scan_OneItem_WithLowerCase()
+        {
+            var checkout = new Checkout();
+            checkout.Scan("a");
+            var totalcheckoutItems = checkout.TotalCheckoutItems;
+            Assert.AreEqual(totalcheckoutItems, 1);
+        }
+
+        [Test]
         public void Scan_ItemsWithOffer()
         {
             var checkout = new Checkout();
@@ -87,6 +96,15 @@ namespace Checkout_Kata_Tests
             checkout.Scan("C"); //20
             var totalPrice = checkout.GetTotalPrice();
             Assert.AreEqual(totalPrice, 210);
+        }
+
+        [Test]
+        public void Scan_EmptyCheckout()
+        {
+            var checkout = new Checkout();
+            var totalItems = checkout.TotalCheckoutItems;
+            Assert.AreEqual(totalItems, 0);
+            Assert.AreEqual(checkout.GetTotalPrice(), 0);
         }
     }
 }
