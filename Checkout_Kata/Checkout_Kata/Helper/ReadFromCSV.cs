@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Checkout_Kata.Models;
 
-namespace Checkout_Kata
+namespace Checkout_Kata.Helper
 {
     public static class ReadFromCSV
     {

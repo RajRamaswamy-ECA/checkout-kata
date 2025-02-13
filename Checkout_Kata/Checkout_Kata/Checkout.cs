@@ -1,4 +1,5 @@
-﻿using Checkout_Kata.Models;
+﻿using Checkout_Kata.Helper;
+using Checkout_Kata.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
